@@ -23,7 +23,7 @@
 .wrapper-preview-menu {
     margin: 0 auto;
     padding: 15px;
-    background-color: #4638c2;
+    background-color: #01A3DE !important;
     box-sizing: border-box;
 }
 
@@ -38,7 +38,7 @@
 }
 
 :root {
-    --primary: #4638c2;
+    --primary: #01A3DE !important;
     --secondary: #4c4f54;
     --success: #45a164;
     --info: #4799eb;
