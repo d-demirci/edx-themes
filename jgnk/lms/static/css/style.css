@@ -310,9 +310,9 @@ footer {
 }
 
 .home>header .outer-wrapper .title .heading-group h1 {
-    font-weight: bold;
+    /* font-weight: bold;
     font-size: 60px;
-    line-height: 140%;
+    line-height: 140%; */
     margin: 0 0 20px;
     color: #5363d3;
     text-shadow: none;
