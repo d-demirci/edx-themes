@@ -253,7 +253,7 @@ footer {
     background-image: -webkit-linear-gradient(#5363d3, #5363d3);
     background-image: linear-gradient(#5363d3, #6c63ff);
     background-size: cover;
-    background-image: url("/static/nubidus/images/banner.jpg");
+    background-image: url("/static/jgnk/images/banner.jpg");
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.93), inset 0 -1px 5px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
     padding: 0;
