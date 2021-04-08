@@ -20,6 +20,9 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
   <div class="main">
     % if not course or disable_courseware_header:
       % if not nav_hidden:
+      <div class="mobile-nav-item hidden-mobile nav-item">
+        <a href="//p1ngp0ng.net">${_("Home")}</a>
+      </div>
         <div class="mobile-nav-item hidden-mobile nav-item">
           <a href="${marketing_link('HOW_IT_WORKS')}">${_("How it Works")}</a>
         </div>
