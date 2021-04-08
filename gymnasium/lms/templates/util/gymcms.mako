@@ -2,7 +2,7 @@
   <%
     import urllib2
     from django.conf import settings
-    #edx_env = settings.APPSEMBLER_FEATURES['ENVIRONMENT']
+    # edx_env = settings.APPSEMBLER_FEATURES['ENVIRONMENT']
     edx_env = 'production'
 
     # turn the partial url passed in into a fully GET-able url
