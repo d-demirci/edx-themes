@@ -1,0 +1,359 @@
+@import 'lms-discussion-main.scss';
+@import 'lms/static/sass/discussion/lms-discussion-main-rtl';
+@import '../base/variables';
+@import '../base/buttons';
+@import '../discussion/partials/discussion-mobile-forum-content';
+
+// RTL Discussion
+
+.rtl.new-theme
+{
+
+
+
+	// new-theme discussion home page rtl
+
+	.forum-content{
+		.view-discussion-home
+		{
+			p{
+				&:nth-child(3){
+						&:before{
+							margin-left: 3px;
+							margin-right: 0 !important;
+						}
+					}
+				}
+				.discussion-features{
+					li{
+						span.icon{
+							margin-left: 5px;
+							margin-right: 0 !important;	
+						}
+					}
+				}
+			}
+		}
+	
+
+
+	.response-btn-count-wrapper
+	{
+		text-align: right;
+	}
+	#forum-nav-browse-filter-input
+	{
+		direction: rtl;
+	}
+  .discussion-content
+  {
+    #discussion-container
+    {
+      .page-header
+      {
+        text-align:left;
+      }
+      .page-header-main
+      {
+        left: auto !important;
+        right: 0;
+        text-align: right !important;
+      }
+      .page-header-secondary
+      {
+        h1
+        {
+          float:right !important;
+        }
+        .forum-search
+        {
+          margin-left:0;
+          margin-right:8px;
+          .search-button
+          {
+            left: 0;
+            right: auto;
+          }
+        }
+      }
+
+      .forum-nav-browse-menu-wrapper
+      {
+        margin-top: 20px;
+        .forum-nav-browse-filter
+        {
+          .icon
+          {
+            left: 10px;
+            right: auto;
+          }
+        }
+
+        .forum-nav-browse-menu-item
+        {
+          .icon
+          {
+            right:0;
+            left:auto;
+          }
+        }
+      }
+
+
+      .new-post-article 
+      {
+        .forum-new-post-form-wrapper
+        {
+          .post-field
+          {
+			.field-label-text
+			{
+				left:auto;
+				right:2px;
+			}
+			.js-post-title
+			{
+				padding: 4px 40px 0 5px !important
+			}
+
+            .field-label
+            {
+              .field-label
+              {
+                .field-input
+                {
+                  .post-type-label
+                  {
+                    margin-left: 10px;
+                    margin-right: 0;
+                    &::before
+                    {
+                      right: 0;
+                      left: auto;
+                    }
+                    &::after
+                    {
+                      right: 2px;
+                      left: auto;
+                    }
+                    .field-input-label
+                    {
+                      //right:30px;
+						left:auto;
+						padding-right:30px;
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .post-options
+        {
+
+		.field-input-label
+		{
+			
+			padding-right:15px;
+		}
+
+          .field-label
+          {
+            padding-left: 0;
+            padding-right: 15px;
+            margin: 0;
+
+            &:before
+            {
+              right: 0px;
+              left: auto;
+            }
+
+            &:after
+            {
+              right: 6px;
+            }
+
+          }
+        }
+      }
+    }
+
+    .forum-nav
+    {
+      margin-right: 0 !important;
+	}
+		.discussion-column
+		{
+			margin-right: 30px !important;
+			margin-left: 0 !important;
+			@media (max-width: 1024px) {
+				margin-right: 15px !important;
+			}
+		}
+  }
+
+
+	// select arrow
+	#course-discussion .discussion-content .forum-new-post-form .post-field .field-input .post-topic,
+	#course-discussion .discussion-content .forum-new-post-form .post-field .wrapper-custom-select .post-topic,
+	#course-discussion .discussion-content .edit-post-form .post-field .field-input .post-topic, 
+	#course-discussion .discussion-content .edit-post-form .post-field .wrapper-custom-select .post-topic 
+	{
+		background-position:3% !important;
+		padding: 10px 10px 10px 25px !important;
+	}
+
+	#course-discussion .discussion-content .discussion-thread-list-container .forum-nav-refine-bar select
+	{
+		background-position:7% !important;
+		padding: 0 10px 0 25px !important;
+    line-height: 32px;
+    height: 32px;
+	}
+
+	// button float right
+
+	#course-discussion .discussion-content .forum-content .thread-wrapper .post-extended-content .discussion-reply-new .reply-post-control button.btn
+	{
+		float:right!important;
+		margin: 0 0px 20px 0 !important;
+		&:hover
+		{
+			float:right!important;
+			margin: 0 0px 20px 0 !important;
+		}
+	}
+	.forum-nav-thread.never-read
+	{
+		border-left: 0 !important;
+		
+		.forum-nav-thread-link
+		{
+			border-right:4px solid var(--primary) !important;
+			border-left:0 !important;
+		}
+	}
+
+}
+
+body.new-theme #course-discussion .discussion-content .forum-new-post-form .post-field .post-type-label .input-radio+.field-input-label:before, body.new-theme #course-discussion .discussion-content .edit-post-form .post-field .post-type-label .input-radio+.field-input-label:before{
+	left:auto;
+	right:0;
+}
+
+// Mobile View
+.rtl.new-theme
+{
+	
+	@media (max-width: 767px) {
+		#course-discussion 
+		{
+			.discussion-content
+			{
+				padding: 20px 0 !important;
+				.page-header
+				{
+					width: calc(100% - 30px) !important;
+					margin-left: 15px;
+					margin-right: 15px;
+
+					
+					.page-header-secondary
+					{
+						top:-9px !important;
+						h1
+						{
+							font-size:22px !important;
+						}
+						.form-actions
+						{
+							width: auto!important;
+							.new-post-btn
+							{
+								width: 40px !important;
+								&:before
+								{
+									left: 50% !important;
+									transform: translateX(-48%) !important;
+									top: -7px !important;
+								}
+							}
+						}
+					}
+
+					
+
+					.forum-search
+					{
+						width: 50% !important;
+						.search-button
+						{
+							left: -20px !important; 
+						}
+					}
+
+					.page-header-main
+					{
+						left: 15px !important;
+					}
+				}
+
+				#discussion-container 
+				{
+					.page-content
+					{
+						padding-top: 0!important;
+					}
+				}
+
+				.discussion-column
+				{
+					padding: 15px !important;
+					margin-right:0!important;
+				}
+			}
+			.forum-nav
+			{
+				overflow: auto !important;
+			}
+
+			.post-header-content
+			{
+				width: 100%;
+				max-width: none;
+			}
+		}
+
+		#discussion-container .forum-new-post-form .post-field .field-label-text
+		{
+			right:2px;
+			left:auto;
+		}
+		
+		#course-discussion .discussion-content #discussion-container .forum-new-post-form .post-field .js-post-title
+		{
+			padding: 4px 40px 0 5px !important;
+		}
+		header.post-header
+		{
+			height: auto!important;
+		}
+		header.page-header
+		{
+			height: auto!important;
+			margin-bottom: 20px;
+		}
+		#course-discussion .discussion-content #discussion-container .forum-new-post-form .post-field .field-input-label
+		{
+			margin-right:30px;
+		}
+		
+		#course-discussion .discussion-content .forum-new-post-form .post-field .post-type-label .input-radio+.field-input-label:before, body.new-theme #course-discussion .discussion-content .edit-post-form .post-field .post-type-label .input-radio+.field-input-label:before{
+			left:auto;
+			right:-30px;
+		}
+	}
+}

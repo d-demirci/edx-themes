@@ -1,0 +1,73 @@
+.new-theme {
+
+	[data-block-type="pb-mcq"],
+	[data-block-type="poll"],
+	[data-block-type="survey"],
+	.discussion-body .field-input,
+	[data-block-type="discussion"] .field-input,
+	[data-block-type="discussion-forum"] .field-input,
+	[data-block-type="adventure"] {
+
+		.choice-selector,
+		.poll-input-container,
+		.poll-result-input-container,
+		.post-type-label,
+		.survey-option label {
+			position: relative;
+			overflow: hidden;
+			width: 18px;
+			height: 18px;
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 2px;
+
+			[type="radio"] {
+				opacity: 0;
+				position: absolute;
+				z-index: 99999;
+				width: 18px;
+				height: 18px;
+				display: inline-block;
+
+			}
+
+			&:before {
+				font-family: 'Material Icons';
+				content: '\e836';
+				box-sizing: border-box;
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				font-size: 18px;
+				line-height: normal;
+				color: $black;
+
+			}
+
+			&.disabled {
+				opacity: 0.5;
+			}
+
+			&.selected {
+
+
+				&:before {
+					content: '\e837';
+				}
+			}
+
+			&:hover:not(.disabled) {
+				&:before {
+					//background: $gray-border;
+				}
+			}
+		}
+	}
+	.adventure {
+		.choice-label {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}

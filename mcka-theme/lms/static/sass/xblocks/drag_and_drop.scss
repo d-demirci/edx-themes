@@ -1,0 +1,823 @@
+// Overrides for Drag and Drop v2:
+@import '../base/variables';
+@import '../base/buttons';
+
+@mixin dnd-mobile-only {
+    @media screen and (max-width: 480px) {
+        // Match the breakpoint used in the drag and drop XBlock's own CSS
+        @content;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Overrides that we want on Apros (desktop + mobile web) and native apps (webviews):
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.content-wrapper {
+    .course-content {
+        width: 100% !important;
+        .themed-xblock.xblock--drag-and-drop {
+
+            .drag-container,
+            .target-img-wrapper,
+            .actions-toolbar {
+                /* Disallow selection on mobile, which causes problematic menu popups during drag and drop*/
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        }
+    }
+}
+
+
+// Style for RTS App Only
+@media (max-width: 767px) {
+    .xblock--drag-and-drop {
+        width: 100% !important;
+        max-width: none !important;
+        .target {
+            width: 100%;
+
+            .target-img-wrapper {
+                width: 100%;
+                height: auto;
+
+                .target-img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .option {
+                padding: 5px 5px !important;
+                font-size: 11px !important;
+
+                .item-content {
+                    p {
+                        font-size: 11px !important;
+                        line-height: 16.5px !important;
+                    }
+                }
+
+                &.option-with-image {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+
+
+.themed-xblock.xblock--drag-and-drop {
+
+    // Hide the text at the top that says e.g. "1 point possible (ungraded)" (MCKIN-6169)
+    .problem-progress {
+        display: none;
+    }
+
+    // Don't display a border around the feedback text that appears below the drag and drop exercise (MCKIN-6169)
+    .feedback p {
+        border: none;
+    }
+
+    // Remove the grey background from disabled "reset" button
+    .sidebar-buttons button:disabled {
+        background-color: transparent;
+    }
+
+    .feedback p::before,
+    .feedback p::after {
+        display: none;
+    }
+
+    .drag-container{
+        .item-bank{
+            .option{
+                cursor: move;
+            }
+        }
+
+        .dragged-items{
+            .option{
+                box-shadow: none;
+                width:100px !important;
+                height: 100px !important;
+                overflow: hidden;
+                border:0;
+                cursor: move;
+                &.option-with-image
+                {
+                    box-sizing: border-box;
+                    .item-content{
+                        height: 100%;
+                        img{
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                            box-sizing: border-box;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Align the Reset button to the right on mobile (non-McKinsey version has it left on mobile, right on desktop) */
+.ltr .themed-xblock.xblock--drag-and-drop .actions-toolbar .action-toolbar-item.sidebar-buttons {
+    float: right;
+    padding-right: -5px;
+    padding-top: 5px;
+}
+
+.rtl .themed-xblock.xblock--drag-and-drop .actions-toolbar .action-toolbar-item.sidebar-buttons {
+    float: left;
+    padding-left: -5px;
+}
+
+// Default of this series of tags is set to text-align left in LMS
+.rtl {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    label {
+        text-align: right;
+    }
+
+    .drag-container .target .item-feedback-popup.popup .close-feedback-popup-desktop-button {
+        right: -4px !important;
+    }
+}
+
+@include dnd-mobile-only {
+
+    /* Don't display "Keyboard Help" on mobile devices that don't have keyboards anyways */
+    .themed-xblock.xblock--drag-and-drop .keyboard-help-button {
+        display: none;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Overrides that we want on Apros (desktop + mobile web) only:
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.lesson-content .themed-xblock.xblock--drag-and-drop // .lesson-content is specific to Apros
+
+    {
+
+    // In Apros, the popups should always have a turquiose color, whether they're right or wrong (MCKIN-6169)
+    .popup,
+    .popup.popup-incorrect {
+        background-color: $mckinsey-academy-turquoise;
+    }
+
+    .popup .close-feedback-popup-desktop-button:focus {
+        outline: none;
+    }
+
+    // Apros mobile web overrides:
+    @include dnd-mobile-only {
+
+        // Fix positioning of feedback popups in Apros mobile web (https://github.com/mckinseyacademy/mcka_apros/pull/1715):
+        // Without this fix, they overlap with the apros header
+        .popup {
+            max-height: calc(100vh - 210px);
+            top: 150px;
+            transform: translateX(-50%);
+        }
+
+        // Feedback popups should always be white on mobile web:
+        .popup,
+        .popup.popup-incorrect {
+            background-color: $white;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Overrides that we want in the native mobile apps (webviews) only:
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include dnd-mobile-only {
+    .course-wrapper.chromeless .themed-xblock.xblock--drag-and-drop {
+
+        // For the native mobile apps, there are some style overrides:
+        // TBD - what MCKIN ticket were these for?
+        .drag-container {
+            background-color: #f7f7f7;
+            display: block;
+        }
+
+        .drag-container .item-bank {
+            border: 0;
+        }
+
+        // Give the draggables a white background and blue text:
+        .option {
+            margin: 5px 7px 5px 0;
+            background-color: $white;
+            font-weight: 600;
+            color: #193c56
+        }
+
+        .popup .popup-header-icon {
+            height: 32px;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .popup .popup-header-icon span:before {
+            content: "\f058";
+            position: absolute;
+            left: 50%;
+            top: 7px;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 26px;
+            color: #629a2c;
+            font-family: 'FontAwesome';
+        }
+
+        .popup .popup-content p {
+            color: #629a2c;
+        }
+
+        .popup .popup-content.popup-content-incorrect p {
+            color: #ff143e;
+        }
+
+        .popup button[class*="close"] span {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .popup .popup-header-icon-incorrect span:before {
+            content: "\f06a";
+            color: #ff143d;
+        }
+
+        //Drag & Drop list indentation
+        ul {
+            margin-left: 20px;
+            padding: 0;
+        }
+
+        //To normalize extra indentation of nested list as it is being in use at number of places and a bit difficult
+        //task to relocate all the <ul><ul></ul></ul> structure to make it a valid markup. Issue # MCKIN-6959
+        ul>ul {
+            margin-left: 0;
+            padding: 0;
+        }
+    }
+}
+
+
+    .target-img-wrapper{
+        .zone{
+            .item-wrapper{
+
+                &::after,
+                &:before{
+                    content:'';
+                    display:inline-block;
+                    width: 100px;
+                    height: 100px;
+                    border:1px dashed var(--primary);
+                    position: absolute;
+                    top:50%;
+                    left:50%;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    transition: .35s;
+
+            }
+
+            &::before {
+                background: var(--primary);
+                border: 0;
+            }
+        }
+        &:focus {
+            outline: 2px dotted $hard-gray !important;
+        }
+    }
+
+    &.dragging {
+        .zone {
+            .item-wrapper {
+                &:before {
+                    opacity: .1;
+                }
+
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    @media (max-width: 767px){
+
+        .zone{
+            .item-wrapper{
+                position: relative;
+                &:after,
+                &:before{
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .option{
+                    width:45% !important;
+                    max-width: none !important;
+                    padding: 0!important;
+                    margin: 0;
+                    line-height: 1;
+                    .item-content{
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    &:hover{
+                        .item-content{
+                            white-space: normal;
+                            overflow: initial;
+                        }
+                    }
+                    &:only-child{
+                        width:90% !important; 
+                        max-width: none !important;
+                    }
+                    &.option-with-image{
+                        &:only-child{
+                            width:80% !important; 
+                            max-width: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+body.new-theme {
+    &.rtl .popup {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        label {
+            text-align: center;
+        }
+    }
+
+    #course-lessons {
+        font-family: "Open Sans", sans-serif !important;
+        margin-bottom: 15px;
+
+        .lesson-title {
+
+            .lesson-index,
+            .lesson-name {
+                color: $gray;
+                font-weight: normal;
+                font-size: 1rem;
+            }
+        }
+
+        h1 {
+            color: $mckinsey-default-link;
+            font-size: 1.125rem;
+            margin-top: 15px;
+
+            a {
+
+
+                i {
+                    display: none;
+                }
+            }
+        }
+
+        .lesson-content {
+            .themed-xblock {
+                &.xblock--drag-and-drop {
+                    max-width: 100%;
+                }
+
+                .problem-title {
+                    display: none;
+                }
+
+                .problem {
+                    .title1 {
+                        font-weight: normal;
+                        color: $black;
+                        font-size: 1.125rem;
+                    }
+
+                    p {
+                        color: $black;
+                    }
+                }
+
+                .drag-container {
+                    background: $white;
+                    border: 1px solid $light-gray;
+
+                    .item-bank {
+                        background: $ash-hard;
+                        border-radius: 0;
+                        border: 0;
+                        padding: 5px 0;
+
+                        .option {
+                            font-size: 0.875rem;
+                            border-radius: 2px;
+                            font-weight: normal;
+                            @include primary-theme-background-color;
+                            box-shadow: inset 0 0 0 150px transparent;
+                            padding: 12px 15px;
+                            cursor: move;
+                            width:auto!important;
+                            transition: .35s;
+                            @media (max-width: 767px){
+                                max-width: calc(65% - 10px);
+                            }
+                            @media (max-width: 800px) and (orientation: portrait) {
+                                -webkit-user-select: none;
+                            }
+                            @media (max-width: 1024px) and (orientation: landscape) {
+                                -webkit-user-select: none;
+                            }
+
+                            &.option-with-image {
+                                padding: 0;
+
+                                @media (max-width: 767px){
+                                    max-width: calc(85% - 10px);
+                                }
+                            }
+
+                            &:hover,
+                            &:focus {
+                                @include primary-theme-background-color-hover( !important);
+                                box-shadow: inset 0 0 0 150px rgba(0, 0, 0, 0.3) !important;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                    // Style for while dragging items
+                    .dragged-items {
+                        .option {
+                            background-color: $gray;
+                            border:0;
+                        }
+                    }
+
+                    @media (max-width: 767px) {
+                        .target {
+                            max-height: 55vh;
+                            overflow: scroll;
+
+                            .target-img-wrapper {
+                                width: calc(100% - 14px);
+                                box-sizing: border-box;
+
+                                img {
+                                    display: block;
+                                }
+                            }
+
+                            .item-feedback-popup {
+                                .popup-header-text {
+                                    font-weight: normal;
+                                }
+                            }
+
+                            .option {
+                                padding: 5px 5px;
+                                font-size: 11px;
+
+
+                                .item-content {
+                                    p {
+                                        font-size: 11px !important;
+                                        line-height: 16.5px !important;
+                                    }
+                                }
+
+                                &.option-with-image {
+                                    padding: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    .target {
+                        margin: 1% auto;
+                        border: 1px solid $light-gray;
+
+                        .item-feedback-popup {
+                            border-radius: 2px;
+                            border: 1px solid $popup-border;
+
+                            &.popup {
+                                @media screen and (min-width: 480px) {
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    left: 0;
+                                    right: 0;
+                                }
+
+                                background: $white;
+                                box-shadow: 0 0 100px rgba(0, 0, 0, 0.4);
+                                padding: 10px 0 0;
+                                text-align: center;
+
+                                .close-feedback-popup-desktop-button {
+                                    display: inline-block;
+                                    background: none;
+                                    color: $black;
+                                    width: 20px;
+                                    height: 16px;
+                                    position: absolute;
+                                    right: 6px;
+                                    top: 4px;
+                                    margin: 0;
+                                    padding: 0;
+
+                                    &:hover {
+                                        box-shadow: none;
+                                        background-color: transparent !important;
+                                    }
+                                }
+
+                                .close-feedback-popup-mobile-button {
+                                    display: none;
+                                }
+
+                                .popup-header-text {
+                                    display: none;
+                                    font-size: 12px;
+                                }
+
+                                .popup-header-icon {
+                                    color: $bg-white-green;
+                                    display: block;
+                                }
+
+                                .popup-content {
+                                    font-size: 0.875rem;
+                                    background: $light-green;
+                                    color: $black;
+                                    padding: 20px 10px 5px;
+                                    margin: 10px 0 10px;
+                                }
+
+                                .popup-header-icon {
+                                    font-size: 1.125rem;
+
+                                    .fa-exclamation-circle {
+                                        font-size: 2.25rem;
+
+                                        &::before {
+                                            font-family: "Material Icons";
+                                            content: "\e000";
+                                        }
+                                    }
+
+                                    .fa-check-circle {
+                                        font-size: 2.25rem;
+
+                                        &::before {
+                                            font-family: "Material Icons";
+                                            content: "\e86c";
+                                        }
+                                    }
+                                }
+
+                                &.popup-incorrect {
+                                    background: $white;
+
+                                    .popup-header-icon-incorrect {
+                                        color: $bg-white-red;
+                                    }
+
+                                    .popup-header-text {
+                                        color: $bg-white-red;
+                                    }
+
+                                    .popup-content-incorrect {
+                                        background: $light-red;
+                                        color: $black;
+                                        padding: 20px 10px 5px;
+                                    }
+                                }
+                            }
+
+                            .fa-times-circle {
+                                &::before {
+                                    font-family: "Material Icons";
+                                    content: "\e14c";
+                                }
+                            }
+                        }
+
+
+
+                        .option {
+                            background-color: $gray;
+
+                            .item-content {
+                                p {
+                                    position: static !important;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 21px;
+                                    padding: 5px;
+                                }
+                            }
+
+                            &.option-with-image {
+                                padding: 0;
+                            }
+                        }
+
+                        .option[draggable='true'][aria-grabbed='true'] {
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                .actions-toolbar {
+                    margin: 10px 0;
+                    position: relative;
+                    padding-bottom: 30px;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+
+                    .action-toolbar-item {
+                        button {
+                            .fa {
+                                display: none;
+                            }
+
+                            opacity: 1;
+
+                            &.reset-button {
+                                padding-left: 30px;
+                                position: relative;
+
+                                .btn-icon {
+                                    position: absolute;
+                                    top: 11px;
+                                    padding-right: 0;
+                                    font-size: 1rem;
+                                    left: 10px;
+                                    display: block;
+
+                                    &:before {
+                                        font-family: 'Material Icons';
+                                        content: '\e863';
+                                        color: $light-gray;
+                                    }
+                                }
+
+                                &:not(:disabled) {
+                                    @include secondary-button;
+                                    padding-left: 30px;
+
+                                    .btn-icon:before {
+                                        @include primary-theme-content-color;
+                                    }
+
+                                    &:active,
+                                    &:hover {
+                                        @include secondary-button-hover;
+
+                                        .btn-icon:before {
+                                            @include primary-theme-content-color-hover;
+                                        }
+
+                                        padding-left: 30px;
+                                    }
+                                }
+                            }
+
+                            &.show-answer-button:not(:disabled) {
+                                @include secondary-button;
+
+                                &:active,
+                                &:hover {
+                                    @include secondary-button-hover;
+                                }
+                            }
+                        }
+
+                        button[disabled] {
+                            background-color: $gray !important;
+                            color: $light-gray !important;
+                            opacity: 1;
+                            border: 0;
+                        }
+
+                        &.submit-answer {
+                            .attempts-used {
+                                position: absolute;
+                                top: 65px;
+                                left: -6px;
+                            }
+                        }
+
+                        &.sidebar-buttons {
+                            width: 100%;
+                            margin-top: 5px;
+
+                            .sidebar-button-wrapper {
+                                border: 0;
+
+                                &:nth-child(2) {
+                                    float: right;
+                                }
+
+                                &:nth-child(3) {
+                                    float: left;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .feedback {
+                    .feedback-content {
+                        .title1 {
+                            color: $black;
+                            font-weight: normal;
+                            font-size: 12px;
+                        }
+
+                        .messages {
+                            .message {
+                                border: 0 !important;
+
+                                &.correct {
+                                    color: $bg-white-green;
+
+                                    &:before {
+                                        font-family: "Material Icons";
+                                        content: "\e145";
+                                    }
+                                }
+
+                                &.incorrect {
+                                    color: $bg-white-red;
+
+                                    &:before {
+                                        font-family: "Material Icons";
+                                        content: "\e145";
+                                    }
+                                }
+
+                                &.partial {
+                                    color: $black;
+
+                                    &:before {
+                                        font-family: "Material Icons";
+                                        content: "\e145";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .item-wrapper {
+        .option {
+            width: 100% !important;
+        }
+    }
+    &.rtl {
+         #course-lessons .lesson-content .themed-xblock .actions-toolbar .action-toolbar-item.sidebar-buttons .sidebar-button-wrapper:nth-child(2){
+            float: left;
+        }
+    }
+}

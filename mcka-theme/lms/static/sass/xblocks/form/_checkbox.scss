@@ -1,0 +1,45 @@
+.new-theme {
+
+	[data-block-type="pb-mrq"],
+	.discussion-body .post-options,
+	[data-block-type="discussion"] .post-options,
+	[data-block-type="discussion-forum"] .post-options {
+
+		.choice-selector,
+		.field-label {
+			position: relative;
+			overflow: hidden;
+			width: 16px;
+			height: 16px;
+			[type="checkbox"] {
+				opacity: 0;
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				left: 0px;
+				top: 2px;
+			}
+
+			&:before {
+				font-family: 'Material Icons';
+				content: '\e835';
+				box-sizing: border-box;
+				width: 16px;
+				height: 16px;
+				font-size:18px;
+				line-height: normal;
+				position: absolute;
+				display: inline-block;
+				left: 0;
+				top: 2px;
+			}
+
+			&.selected {
+				&:before {
+					color: $black !important;
+					content: '\e834';
+				}
+			}
+		}
+	}
+}

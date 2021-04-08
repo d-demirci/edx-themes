@@ -1,0 +1,151 @@
+//for adventure and simulation
+@import '../base/variables';
+@import '../base/buttons';
+
+body.new-theme {
+    [data-block-type="adventure"] {
+
+
+        // MCQ
+
+        [data-type="MCQBlock"] {
+            .choice-selector {
+                &::before {
+                    top: 0;
+                }
+            }
+        }
+
+        // Brightcov video width in Adventure.
+        .video-js{
+            width:100%;
+        }
+
+
+
+        .adventure {
+            .info {
+                font-size: 1rem;
+            }
+
+            .step-body {
+                border: 1px solid $border_color_1;
+
+                .step-view {
+                    padding: 0;
+
+                    .step-child {
+                        &.ooyala-child {
+                            margin-bottom: 35px;
+
+                            .ooyalaplayer.oo-player-container {
+                                min-width: 100% !important;
+                                height: auto !important;
+                            }
+                        }
+
+                        .questionnaire {
+                            .choices-list {
+                                padding: 4px 3px 0 3px;
+                                font-size: 1rem;
+
+                                .choice-selector {
+                                    input[type="radio"] {
+                                        height: auto;
+                                    }
+                                }
+
+                                .choice-label {
+                                    padding-left: 12px;
+                                    margin-top: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .navigation-view {
+                    .navigation-back-next-buttons {
+                        .navigation-next {
+
+                            @extend %button;
+                        }
+
+                        .navigation-back {
+
+                            @extend %button;
+                            background-color: transparent !important;
+                            border: 1px solid var(--primary) !important;
+                            color: var(--primary) !important;
+                            box-shadow: none !important;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+// RTL Version.
+
+.rtl.new-theme {
+    [data-block-type="adventure"] {
+
+        [data-type="MCQBlock"] {
+            .choices-list {
+                .choice {
+                    .choice-selector {
+                        display: inline-block;
+                        position: relative;
+
+                        &::before {
+                            top: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .navigation-view {
+            .navigation-back-next-buttons {
+                text-align: right !important;
+            }
+
+            .navigation-start-over {
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    body.new-theme {
+        [data-block-type="adventure"] {
+            .adventure {
+                .step-body {
+                    padding-bottom: 35px;
+
+                    .step-child {
+                        .questionnaire {
+                            .choices-list {
+                                .choice-label {
+                                    margin-top: -5px;
+                                }
+                            }
+                        }
+                    }
+
+                    .navigation-view .navigation-start-over {
+                        bottom: -30px;
+                    }
+                }
+            }
+        }
+    }
+}

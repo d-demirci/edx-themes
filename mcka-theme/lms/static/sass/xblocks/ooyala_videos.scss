@@ -1,0 +1,187 @@
+// Overrides for ooyala videos and supplymentary videos xblocks:
+@import '../base/variables';
+
+body.new-theme {
+    
+    .oo-interactive-container {
+        direction: ltr;
+        text-align: center;
+    }
+
+    .oo-text-track-container {
+        transform: none !important;
+        left: auto !important;
+    }
+
+    .oo-control-bar {
+        text-align: unset;
+    }
+
+
+    /* mobile only  */
+    @media (max-width: 767px) {
+        .ooyala-player-xblock-wrapper {
+            .p3sdk-container {
+                .transcript-header {
+                    .language-tracks {
+                        ul {
+                            li {
+                                font-size: 0.875rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .ooyala-player-xblock-wrapper {
+        .ooyala-player-container {
+            .ooyalaplayer {
+                &.oo-player-container {
+                    margin: 0 0 30px 0;
+
+                    .oo-hovered-indicator {
+                        @include primary-theme-background-color-hover( !important);
+                        opacity: 0.5 !important;
+                    }
+
+                    .oo-scrubber-bar-container
+                        {
+                            .oo-scrubber-bar-padding
+                            {
+
+                                .oo-scrubber-bar
+                                {
+                                    .oo-played-indicator
+                                    {
+                                        @include primary-theme-background-color(!important);
+                                        &:hover
+                                        {
+                                            @include primary-theme-background-color-hover(!important);
+                                        }
+                                    }
+
+                                    .oo-playhead-padding
+                                    {
+                                        .oo-playhead 
+                                        {
+                                            @include primary-theme-background-color(!important);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
+                    .oo-state-screen .oo-action-icon {
+                        left: 47%;
+                    }
+
+                    .oo-control-bar-items-wrapper {
+                        .oo-playback-speed-container {
+                            @include primary-theme-background-color(!important);
+
+                            &:hover,
+                            &:active {
+                                @include primary-theme-background-color-hover(!important);
+                            }
+                        }
+                        
+                        
+                        // Volume Bars
+
+                        .oo-volume
+                        {
+                            .oo-volume-controls
+                            {
+                                .oo-volume-bar
+                                {
+                                    @include primary-theme-background-color(!important);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .p3sdk-container {
+        .p3sdk-interactive-transcript-collapse-visible {
+            a {
+                .transcript-toggle {
+                    @include primary-theme-content-color;
+                    padding-right: 5px;
+                }
+
+                .fa {
+                    font-family: "Material Icons";
+                    font-size: 1.125rem;
+                    @include primary-theme-content-color;
+                    font-size: 2.5rem;
+                    vertical-align: middle;
+
+                    &.fa-sort-desc {
+                        &:before {
+                            content: '\e5c5';
+                        }
+                    }
+
+                    &.fa-sort-asc {
+                        &:before {
+                            content: '\e5c7';
+                        }
+                    }
+
+                    &.transcript-show,
+                    &.transcript-hide {
+                        vertical-align: middle;
+                    }
+
+                }
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .transcript-header {
+
+            .language-tracks {
+                ul {
+                    li {
+                        @include primary-theme-content-color( !important);
+                        font-size: 1rem;
+                        font-weight: 400;
+                        list-style: none;
+                        list-style-type: none;
+
+                        &.selected {
+                            color: #2E2D39 !important;
+                        }
+
+                        .print-transcript-btn {
+                            background-image: url(../../mcka-theme/images/videos-xblock-sprite.png);
+                            background-position: -356px -11px;
+                            width: 28px;
+                            height: 24px;
+                        }
+
+                        .transcript-download-btn {
+                            background-image: url(../../mcka-theme/images/videos-xblock-sprite.png);
+                            background-position: -306px -11px;
+                            width: 28px;
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .transcript-content {
+            padding-top: 20px;
+        }
+    }
+}
